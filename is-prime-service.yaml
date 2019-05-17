@@ -1,0 +1,38 @@
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "is-prime-service"
+  namespace: "default"
+  labels:
+    app: "is-prime-service"
+spec:
+  ports:
+  - protocol: "TCP"
+    port: 5000
+  selector:
+    app: "is-prime-svc"
+  type: "ClusterIp"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: is-prime-service-deployment
+  labels:
+    app: is-prime-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: is-prime-service
+  template:
+    metadata:
+      labels:
+        app: is-prime-service
+    spec:
+      containers:
+      - name: is-prime-service
+        image: IMAGE
+        ports:
+        - containerPort: 5000
