@@ -33,5 +33,5 @@ def prime_list(start,end):
     return l
 
 if __name__ == '__main__':
-    for p in prime_list():
+    for p in prime_list(1,10):
         print(p)
