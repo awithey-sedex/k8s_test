@@ -6,7 +6,7 @@ import api
 
 PORT = os.environ['PORT']
 try:
-    int(PORT)
+    PORT=int(PORT)
 except:
     PORT = 5000
 

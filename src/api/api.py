@@ -3,6 +3,10 @@ import requests
 
 ENDPOINTURL = os.environ['APIENDPOINTURL']
 REQUESTTIMEOUT = os.environ.get('REQUESTTIMEOUT', 10)
+try:
+    REQUESTTIMEOUT = int(REQUESTTIMEOUT)
+except:
+    REQUESTTIMEOUT = 10
 
 if ENDPOINTURL[:1] != '/':
     ENDPOINTURL += '/'
