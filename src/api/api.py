@@ -2,6 +2,7 @@ import os
 import requests
 
 ENDPOINTURL = os.environ['APIENDPOINTURL']
+REQUESTTIMEOUT = os.environ.get('REQUESTTIMEOUT', 10)
 
 if ENDPOINTURL[:1] != '/':
     ENDPOINTURL += '/'
@@ -14,7 +15,7 @@ print("Endpoint url:", ENDPOINTURL)
 def is_prime_number(x):
     url = ENDPOINTURL + str(x)
     print("Call endpoint: " + url)
-    r = requests.get(url)
+    r = requests.get(url, timeout=REQUESTTIMEOUT)
     r.raise_for_status()
     if r.status_code == 200 and r.text:
         result = r.text.strip().lower()
@@ -30,5 +31,7 @@ def prime_list(start,end):
     return "Not yet implemented!"
 
 if __name__ == '__main__':
-    for p in prime_list(1,10):
-        print(p)
+    print(prime_text(1))
+    print(prime_text(2))
+    print(prime_text(3))
+    print(prime_text(4))
