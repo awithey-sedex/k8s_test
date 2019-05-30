@@ -2,17 +2,21 @@
 
 if [ -z "$2" ]; then
     echo "Usage <api|service> <build / version number>"
+    exit 1
 fi
 
-image="gcr.io/sedex-tech-test/is_prime/$1:$2"
-echo Image: ${image}
+IMAGEPREFIX="gcr.io/sedex-tech-test/is_prime"
+
+NEWIMAGE="$IMAGEPREFIX/$1:$2"
+
+echo Image: ${NEWIMAGE}
 
 pushd src/$1
-docker build . -t ${image}
-docker push ${image}
+docker build . -t ${NEWIMAGE}
+docker push ${NEWIMAGE}
 popd
 
-sed "s IMAGE ${image} " is-prime-$1.yaml | kubectl apply -f -
+sed "s|image: .*|image: ${NEWIMAGE}|" is-prime-$1.yaml | kubectl apply -f -
 
 kubectl get services
 kubectl get pods

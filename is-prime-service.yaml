@@ -12,7 +12,7 @@ spec:
     port: 5000
   selector:
     app: "is-prime-svc"
-  type: "ClusterIp"
+  type: "ClusterIP"
 
 ---
 apiVersion: apps/v1
@@ -33,6 +33,6 @@ spec:
     spec:
       containers:
       - name: is-prime-service
-        image: IMAGE
+        image: gcr.io/sedex-tech-test/is_prime/service:0.1.2
         ports:
         - containerPort: 5000

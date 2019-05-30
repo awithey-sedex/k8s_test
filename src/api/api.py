@@ -27,10 +27,7 @@ def prime_text(x):
     return '{} is not prime.'.format(x)
 
 def prime_list(start,end):
-    l = []
-    for i in range(start,end,1):
-        l.append(prime_text(i))
-    return l
+    return "Not yet implemented!"
 
 if __name__ == '__main__':
     for p in prime_list(1,10):

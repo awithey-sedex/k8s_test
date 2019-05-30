@@ -33,6 +33,6 @@ spec:
     spec:
       containers:
       - name: is-prime-api
-        image: IMAGE
+        image: gcr.io/sedex-tech-test/is_prime/api:0.1.5
         ports:
         - containerPort: 5000
