@@ -11,7 +11,7 @@ spec:
   - protocol: "TCP"
     port: 5000
   selector:
-    app: "is-prime-svc"
+    app: "is-prime-service"
   type: "ClusterIP"
 
 ---
