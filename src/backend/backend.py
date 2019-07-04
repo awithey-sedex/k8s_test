@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_restful import Resource, Api
 
-import service
 
 app = Flask(__name__)
 api = Api(app)
@@ -13,7 +12,13 @@ class Usage(Resource):
 
 class IsPrime(Resource):
     def get(self, num):
-        return service.is_prime_number(num)
+        if num >= 2:
+            for y in range(2,num):
+                if not ( num % y ):
+                    return False
+        else:
+            return False
+        return True
 
 api.add_resource(IsPrime, '/<int:num>')
 

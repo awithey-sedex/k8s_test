@@ -1,0 +1,38 @@
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "is-prime-backend"
+  namespace: "default"
+  labels:
+    app: "is-prime-backend"
+spec:
+  ports:
+  - protocol: "TCP"
+    port: 5000
+  selector:
+    app: "is-prime-backend"
+  type: "ClusterIP"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: is-prime-backend
+  labels:
+    app: is-prime-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: is-prime-backend
+  template:
+    metadata:
+      labels:
+        app: is-prime-backend
+    spec:
+      containers:
+      - name: is-prime-backend
+        image: gcr.io/sedex-tech-test/is_prime/is_prime_backend:0.2.1
+        ports:
+        - containerPort: 5000

@@ -2,7 +2,7 @@ from flask import Flask
 from flask_restful import Resource, Api
 import os
 
-import api
+import gateway
 
 PORT = os.environ['PORT']
 try:
@@ -11,7 +11,7 @@ except:
     PORT = 5000
 
 app = Flask(__name__)
-flaskApi = Api(app)
+api = Api(app)
 
 
 class Usage(Resource):
@@ -20,15 +20,15 @@ class Usage(Resource):
 
 class PrimeList(Resource):
     def get(self, start=1, end=20):
-        return api.prime_list(start=start, end=start+end)
+        return gateway.prime_list(start=start, end=start+end)
 
 class IsPrime(Resource):
     def get(self, num):
-        return api.prime_text(num)
+        return gateway.prime_text(num)
 
-flaskApi.add_resource(Usage, '/')
-flaskApi.add_resource(IsPrime, '/<int:num>')
-flaskApi.add_resource(PrimeList, '/list', '/list/<int:start>', '/list/<int:start>/<int:end>')
+api.add_resource(Usage, '/')
+api.add_resource(IsPrime, '/<int:num>')
+api.add_resource(PrimeList, '/list', '/list/<int:start>', '/list/<int:start>/<int:end>')
 
 if __name__ == '__main__':
     print(f'Start host using port: {PORT}')

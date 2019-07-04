@@ -2,37 +2,37 @@
 apiVersion: "v1"
 kind: "Service"
 metadata:
-  name: "is-prime-service"
+  name: "is-prime-frontend"
   namespace: "default"
   labels:
-    app: "is-prime-service"
+    app: "is-prime-frontend"
 spec:
   ports:
   - protocol: "TCP"
     port: 5000
   selector:
-    app: "is-prime-service"
-  type: "ClusterIP"
+    app: "is-prime-frontend"
+  type: "LoadBalancer"
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: is-prime-service-deployment
+  name: is-prime-frontend
   labels:
-    app: is-prime-service
+    app: is-prime-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: is-prime-service
+      app: is-prime-frontend
   template:
     metadata:
       labels:
-        app: is-prime-service
+        app: is-prime-frontend
     spec:
       containers:
-      - name: is-prime-service
-        image: gcr.io/sedex-tech-test/is_prime/service:0.1.2
+      - name: is-prime-frontend
+        image: gcr.io/sedex-tech-test/is_prime/is_prime_frontend:0.2.0
         ports:
         - containerPort: 5000

@@ -1,7 +1,7 @@
 import os
 import requests
 
-ENDPOINTURL = os.environ['APIENDPOINTURL']
+ENDPOINTURL = os.environ['BACKENDURL']
 REQUESTTIMEOUT = os.environ.get('REQUESTTIMEOUT', 10)
 try:
     REQUESTTIMEOUT = int(REQUESTTIMEOUT)
