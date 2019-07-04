@@ -5,5 +5,5 @@ There is a "front-end" servive, called "is-prime-api" and a backend service: "is
 The is-prime-api provides three endpoints:
 	/ - provides simple usage information
 	/_number_ says whether the supplied integer is a prime number
-	/list/<start>/<count> says for each number in the list, whether (or not) they are prime
+	/list/_start_/_count_ says for each number in the list, whether (or not) they are prime
 		<count> is the length if the list. If it is not supplied, the default is 20.	
